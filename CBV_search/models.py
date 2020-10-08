@@ -11,9 +11,25 @@ class BaseRegister(models.Model):
     active = models.BooleanField('Ativado ?', default=True)
 
 
+class Category(BaseRegister):
+    name_category = models.CharField('Nome da Categoria', max_length=50)
+
+    def __str__(self):
+        return self.name_category
+
+
 class Person(BaseRegister):
     name = models.CharField('Nome', max_length=100)
+    last_name = models.CharField('Sobrenome', max_length=100)
+
     email = models.EmailField('E-mail')
+    categoria = models.ManyToManyField(Category)
 
     birth_time = models.TimeField('Horario de nascimento', auto_now=False, auto_now_add=False)
     date_birth = models.DateField('Data de nascimento')
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return f'{self.name} {self.last_name}'

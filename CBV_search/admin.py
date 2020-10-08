@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from CBV_search.models import Person, Category
+
+admin.site.register(Person)
+admin.site.register(Category)
