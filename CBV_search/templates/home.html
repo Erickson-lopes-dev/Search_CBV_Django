@@ -1,13 +1,36 @@
-{% for person in object_list %}
-    <ul>
-        <li>{{ person.name }}</li>
-        <li>{{ person.last_name }}</li>
-        {% for category in  person.categories.all %}
-            <ul>
-                <li>{{ category }}</li>
-            </ul>
-        {% endfor %}
-        <li>{{ person.birth_time }}</li>
-        <li>{{ person.birth_date }}</li>
-    </ul>
-{% endfor %}
+{% extends 'layout.html' %}
+
+{% block content %}
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Sobrenome</th>
+          <th scope="col">Email</th>
+          <th scope="col">Categorias</th>
+          <th scope="col">Hora/Nasc</th>
+          <th scope="col">Data/Nasc</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for person in object_list %}
+        <tr>
+            <th scope="row">{{ person.id }}</th>
+            <td>{{ person.name }}</td>
+            <td>{{ person.last_name }}</td>
+            <td>{{ person.email }}</td>
+            <td>
+              {% for category in  person.categories.all %}
+                <ul>
+                    {{ category }}
+                </ul>
+              {% endfor %}
+            </td>
+            <td>{{ person.birth_time }}</td>
+            <td>{{ person.birth_date }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}
