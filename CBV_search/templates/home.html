@@ -1,0 +1,13 @@
+{% for person in object_list %}
+    <ul>
+        <li>{{ person.name }}</li>
+        <li>{{ person.last_name }}</li>
+        {% for category in  person.categories.all %}
+            <ul>
+                <li>{{ category }}</li>
+            </ul>
+        {% endfor %}
+        <li>{{ person.birth_time }}</li>
+        <li>{{ person.birth_date }}</li>
+    </ul>
+{% endfor %}

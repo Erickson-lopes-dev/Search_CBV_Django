@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from django.views.generic import ListView
 
-# Create your views here.
+from CBV_search.models import Person
+
+
+class HomePage(ListView):
+    model = Person
+    template_name = 'home.html'
+
